@@ -5,6 +5,11 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu, sceneTransition;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Pause();
+    }
     public void Pause()
     {
         Time.timeScale = 0;

@@ -10,7 +10,8 @@ public class CheckMouseEnterButton : MonoBehaviour, IPointerEnterHandler, IPoint
     public PointerMover pointerMover;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        pointerMover.nowStaying = thisButtonID;
+        if (GetComponent<Button>().interactable)
+            pointerMover.nowStaying = thisButtonID;
     }
 
     public void OnPointerExit(PointerEventData eventData)
