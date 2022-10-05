@@ -20,8 +20,8 @@ public class PointerMover : MonoBehaviour
             targetPosY = buttons[nowStaying - 1].transform.position.y;
             if (left.transform.localScale.x <= 0.095)
             {
-                right.transform.localScale += new Vector3(scaleChangeSpeed * Time.deltaTime, scaleChangeSpeed * Time.deltaTime, 0);
-                left.transform.localScale += new Vector3(scaleChangeSpeed * Time.deltaTime, scaleChangeSpeed * Time.deltaTime, 0);
+                right.transform.localScale += new Vector3(scaleChangeSpeed * Time.unscaledDeltaTime, scaleChangeSpeed * Time.unscaledDeltaTime, 0);
+                left.transform.localScale += new Vector3(scaleChangeSpeed * Time.unscaledDeltaTime, scaleChangeSpeed * Time.unscaledDeltaTime, 0);
             }
             else
             {
@@ -33,8 +33,8 @@ public class PointerMover : MonoBehaviour
         {
             if (left.transform.localScale.x >= 0.005)
             {
-                right.transform.localScale -= new Vector3(scaleChangeSpeed * Time.deltaTime, scaleChangeSpeed * Time.deltaTime, 0);
-                left.transform.localScale -= new Vector3(scaleChangeSpeed * Time.deltaTime, scaleChangeSpeed * Time.deltaTime, 0);
+                right.transform.localScale -= new Vector3(scaleChangeSpeed * Time.unscaledDeltaTime, scaleChangeSpeed * Time.unscaledDeltaTime, 0);
+                left.transform.localScale -= new Vector3(scaleChangeSpeed * Time.unscaledDeltaTime, scaleChangeSpeed * Time.unscaledDeltaTime, 0);
             }
             else
             {
@@ -45,9 +45,9 @@ public class PointerMover : MonoBehaviour
         if (transform.position.y != targetPosY)
         {
             if (transform.position.y > targetPosY + 1)
-                transform.position -= new Vector3(0, positionChangeSpeed * Time.deltaTime, 0);
+                transform.position -= new Vector3(0, positionChangeSpeed * Time.unscaledDeltaTime, 0);
             else if (transform.position.y < targetPosY - 1)
-                transform.position += new Vector3(0, positionChangeSpeed * Time.deltaTime, 0);
+                transform.position += new Vector3(0, positionChangeSpeed * Time.unscaledDeltaTime, 0);
             else
                 transform.position = new Vector3(transform.position.x, targetPosY, transform.position.z);
         }

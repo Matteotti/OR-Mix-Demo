@@ -11,14 +11,14 @@ public class DeveloperShowAndHide : MonoBehaviour
     void Update()
     {
         if (speed != 0)
-            transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+            transform.position += new Vector3(0, speed * Time.unscaledDeltaTime, 0);
         if (show)
         {
             panel.SetActive(true);
             if (transform.position.y < up)
                 speed = initSpeed;
             else if (speed > 0.05)
-                speed -= acceleration * Time.deltaTime;
+                speed -= acceleration * Time.unscaledDeltaTime;
             else
                 speed = 0;
         }
@@ -27,7 +27,7 @@ public class DeveloperShowAndHide : MonoBehaviour
             if (transform.position.y > down)
                 speed = -initSpeed;
             else if (speed < -0.05)
-                speed += acceleration * Time.deltaTime;
+                speed += acceleration * Time.unscaledDeltaTime;
             else
             {
                 speed = 0;

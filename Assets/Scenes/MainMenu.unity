@@ -244,8 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3930e2c954315b4e9388ae70cad0afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initPlayerPos: {x: 0, y: 0, z: 0}
-  initCameraPos: {x: 0, y: 0, z: 0}
+  initPlayerPos: {x: -6.4, y: 0, z: 0}
+  initCameraPos: {x: 0, y: 0, z: -10}
   buttonNew: {fileID: 112157013}
   buttonLoad: {fileID: 1874733072}
   buttonDevelopers: {fileID: 211289430}
@@ -655,7 +655,7 @@ RectTransform:
   m_GameObject: {fileID: 230347354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 24, y: 24, z: 24}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 23394507}
