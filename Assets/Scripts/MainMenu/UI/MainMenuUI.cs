@@ -16,6 +16,7 @@ public class MainMenuUI : MonoBehaviour
     public void New()
     {
         PlayerPrefs.SetInt("IfFirstTime", 0);
+        PlayerPrefs.SetInt("MaxIndexs", 1);
         PlayerPrefs.SetFloat("PlayerPosX", initPlayerPos.x);
         PlayerPrefs.SetFloat("PlayerPosY", initPlayerPos.y);
         PlayerPrefs.SetFloat("PlayerPosZ", initPlayerPos.z);

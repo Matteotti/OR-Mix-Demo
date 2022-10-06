@@ -8,9 +8,10 @@ public class Dialogue : MonoBehaviour
 {
     [TextArea] public List<string> dialogues;
     public TMP_Text text;
-    public bool allowNext, show;
+    public bool allowNext, show, willRunOtherThingsWhenFinish;
     public float showDialogueGap, transparentSpeed;
-    public GameObject arrow;
+    public GameObject arrow, targetGameobject;
+    public string targetName;
     public Image sprite1;
     public TMP_Text sprite2;
     [SerializeField] private string now;
@@ -26,7 +27,7 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J))
         {
             letterPointer = now.Length;
         }
@@ -34,7 +35,7 @@ public class Dialogue : MonoBehaviour
         {
             if (!arrow.activeSelf)
                 arrow.SetActive(true);
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J))
             {
                 arrow.SetActive(false);
                 allowNext = false;
@@ -72,6 +73,11 @@ public class Dialogue : MonoBehaviour
             sprite1.color = new Color(sprite1.color.r, sprite1.color.g, sprite1.color.b, 0);
             sprite2.color = new Color(sprite2.color.r, sprite2.color.g, sprite2.color.b, 0);
             gameObject.SetActive(false);
+            if(willRunOtherThingsWhenFinish)
+            {
+                targetGameobject.SendMessage(targetName, SendMessageOptions.DontRequireReceiver);
+            }
+            willRunOtherThingsWhenFinish = false;
         }
     }
     void ShowNextLetters()

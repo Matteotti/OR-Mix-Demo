@@ -6,11 +6,13 @@ public class PlayerControl : MonoBehaviour
 {
     //¿É¿¼ÂÇ£ºÍÁÀÇÌø+ÌøÔ¾²¹³¥
     //´óÌøÐ¡Ìø µ¥´ÎÌøÔ¾
-    public float walkSpeed, jumpSpeed, maxAllowedJumpTime, maxFallSpeed;
-    [SerializeField] private float jumpTime = 0f;
-    public bool allowLongJump, isGrounded, isRealGrounded, allowStart;
+    public float walkSpeed, jumpSpeed, maxAllowedJumpTime, maxFallSpeed, dialogueForceMoveSpeed, windGap;
+    [SerializeField] private float jumpTime = 0f, windCounter;
+    public bool allowLongJump, isGrounded, isRealGrounded, allowStart, isFreeze;
+    public Vector3 target;
     public Rigidbody2D rb;
     public Animator animator;
+    public GameObject wind;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,10 +21,32 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        if (horizontal * transform.localScale.x < 0)
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        rb.velocity = new Vector2(walkSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
-        LongJump();
+        if (!isFreeze)
+        {
+            if (horizontal * transform.localScale.x < 0)
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            rb.velocity = new Vector2(walkSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+            LongJump();
+            Wind();
+        }
+        else
+        {
+            if (target.x > transform.position.x + 0.1)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+                rb.velocity = new Vector2(dialogueForceMoveSpeed, rb.velocity.y);
+            }
+            else if (target.x < transform.position.x - 0.1)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+                rb.velocity = new Vector2(-dialogueForceMoveSpeed, rb.velocity.y);
+            }
+            else
+            {
+                isFreeze = false;
+                transform.position = target;
+            }
+        }
         UpdateAnim();
     }
     void LongJump()
@@ -53,5 +77,14 @@ public class PlayerControl : MonoBehaviour
     {
         animator.SetFloat("SpeedX", rb.velocity.x);
         animator.SetFloat("SpeedY", rb.velocity.y);
+    }
+    void Wind()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Vector2 dir = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            float angle = Mathf.Atan2(dir.y, dir.x);
+            Instantiate(wind, transform.position + (Vector3)dir, Quaternion.Euler(0, 0, angle / Mathf.PI * 180));
+        }
     }
 }
