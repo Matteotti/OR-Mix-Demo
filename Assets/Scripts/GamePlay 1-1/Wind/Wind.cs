@@ -5,19 +5,24 @@ using UnityEngine;
 public class Wind : MonoBehaviour
 {
     public float continuousTime;
+    public GameObject player;
+    public Vector2 dir;
     void Start()
     {
         Invoke(nameof(Destroy), continuousTime);
-        //Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), GameObject.Find("Player").GetComponent<BoxCollider2D>());
+        player = GameObject.Find("Player");
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), player.GetComponent<BoxCollider2D>());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
         if (collision.gameObject.CompareTag("Windable"))
         {
-            Debug.Log("YES");
-            collision.SendMessage("BeWinded", SendMessageOptions.DontRequireReceiver);
+            collision.SendMessage("BeWinded", dir, SendMessageOptions.DontRequireReceiver);
+        }
+        else if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Trap"))
+        {
+            player.GetComponent<PlayerControl>().Fly();
         }
     }
     void Destroy()

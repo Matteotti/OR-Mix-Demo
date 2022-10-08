@@ -6,13 +6,13 @@ public class PlayerControl : MonoBehaviour
 {
     //¿É¿¼ÂÇ£ºÍÁÀÇÌø+ÌøÔ¾²¹³¥
     //´óÌøÐ¡Ìø µ¥´ÎÌøÔ¾
-    public float walkSpeed, jumpSpeed, maxAllowedJumpTime, maxFallSpeed, dialogueForceMoveSpeed, windGap;
-    [SerializeField] private float jumpTime = 0f, windCounter;
-    public bool allowLongJump, isGrounded, isRealGrounded, allowStart, isFreeze;
+    public float walkSpeed, jumpSpeed, maxAllowedJumpTime, dialogueForceMoveSpeed, flySpeedX, flySpeedY, maxFlyTime;
+    [SerializeField] private float jumpTime = 0f;
+    public bool allowLongJump, isGrounded, isRealGrounded, allowStart, isFreeze, isFlying;
     public Vector3 target;
     public Rigidbody2D rb;
     public Animator animator;
-    public GameObject wind;
+    public GameObject wind, sceneTransition;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        if (!isFreeze)
+        if (!isFreeze && !isFlying)
         {
             if (horizontal * transform.localScale.x < 0)
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -29,7 +29,27 @@ public class PlayerControl : MonoBehaviour
             LongJump();
             Wind();
         }
-        else
+        else if (isFlying)
+        {
+            if (horizontal * transform.localScale.x < 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
+            if (rb.velocity.y > flySpeedY)
+            {
+                rb.velocity = new Vector2(flySpeedX * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(flySpeedX * Input.GetAxisRaw("Horizontal"), flySpeedY);
+            }
+            if (isRealGrounded)
+            {
+                CancelInvoke(nameof(StopFly));
+                StopFly();
+            }
+        }
+        else if (isFreeze)
         {
             if (target.x > transform.position.x + 0.1)
             {
@@ -83,8 +103,39 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Vector2 dir = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (dir.y < 0) dir.x = 0;
+            if (dir == Vector2.zero) return;
             float angle = Mathf.Atan2(dir.y, dir.x);
-            Instantiate(wind, transform.position + (Vector3)dir, Quaternion.Euler(0, 0, angle / Mathf.PI * 180));
+            GameObject nowWind = Instantiate(wind, transform.position + 2 * (Vector3)dir, Quaternion.Euler(0, 0, angle / Mathf.PI * 180));
+            nowWind.GetComponent<Wind>().dir = dir;
         }
+    }
+    public void Dead()
+    {
+        //ËÀÍö¶¯»­
+        sceneTransition.GetComponent<SceneTransition>().widen = true;
+        sceneTransition.GetComponent<SceneTransition>().allowNext = true;
+        PlayerPrefs.SetInt("NextScene", 1);
+    }
+    public void Fly()
+    {
+        if (!isFlying && !isRealGrounded)
+        {
+            isFlying = true;
+            Invoke(nameof(StopFly), maxFlyTime);
+        }
+        else if (!isRealGrounded)
+        {
+            CancelInvoke(nameof(StopFly));
+            Invoke(nameof(StopFly), maxFlyTime);
+        }
+        else
+        {
+            StopFly();
+        }
+    }
+    public void StopFly()
+    {
+        isFlying = false;
     }
 }
