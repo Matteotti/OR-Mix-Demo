@@ -16,15 +16,15 @@ public class ObstaclePatrol : MonoBehaviour
     {
         if (transform.position == start)
             startToEnd = true;
-        else
+        else if(transform.position == end)
             startToEnd = false;
         if(startToEnd)
         {
-            if (transform.position.x < end.x - 0.1)
+            if (transform.position.y < end.y - 0.1)
             {
                 transform.position += dir * velocity * Time.deltaTime;
             }
-            else if (transform.position.x > end.x + 0.1)
+            else if (transform.position.y > end.y + 0.1)
             {
                 transform.position -= dir * velocity * Time.deltaTime;
             }
@@ -33,13 +33,13 @@ public class ObstaclePatrol : MonoBehaviour
         }
         else
         {
-            if (transform.position.x < start.x - 0.1)
+            if (transform.position.y < start.y - 0.1)
             {
-                transform.position += -dir * velocity * Time.deltaTime;
+                transform.position += dir * velocity * Time.deltaTime;
             }
-            else if (transform.position.x > start.x + 0.1)
+            else if (transform.position.y > start.y + 0.1)
             {
-                transform.position -= -dir * velocity * Time.deltaTime;
+                transform.position -= dir * velocity * Time.deltaTime;
             }
             else
                 transform.position = start;
