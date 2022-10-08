@@ -5,9 +5,10 @@ using UnityEngine;
 public class NPCStartDialogue : MonoBehaviour
 {
     public bool allowDialogue = false, startDialogue = false, willRunOtherThingsWhenFinish;
+    public float deltaX, deltaY;
     public Vector3 targetPos;
     public DialogueTip dialogueTips;
-    public GameObject dialogue, player, targetGameobject;
+    public GameObject dialogue, player, targetGameobject, tips;
     public string targetName;
     public PlayerControl playerControl;
     private void Start()
@@ -18,6 +19,7 @@ public class NPCStartDialogue : MonoBehaviour
     {
         if (allowDialogue)
         {
+            tips.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(deltaX, deltaY));
             if (!dialogueTips.show)
                 dialogueTips.show = true;
             if (Input.GetKeyDown(KeyCode.J) && !dialogue.activeSelf)
@@ -32,8 +34,6 @@ public class NPCStartDialogue : MonoBehaviour
         }
         else
         {
-            if (dialogueTips.show)
-                dialogueTips.show = false;
             if (player.transform.position == targetPos)
             {
                 if (player.transform.position.x < transform.position.x)
@@ -54,5 +54,7 @@ public class NPCStartDialogue : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
             allowDialogue = false;
+        if (dialogueTips.show)
+            dialogueTips.show = false;
     }
 }
