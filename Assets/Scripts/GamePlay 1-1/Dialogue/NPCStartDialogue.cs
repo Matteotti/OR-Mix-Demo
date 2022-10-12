@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCStartDialogue : MonoBehaviour
 {
+    [TextArea] public List<string> dialogues;
     public bool allowDialogue = false, startDialogue = false, willRunOtherThingsWhenFinish;
     public float deltaX, deltaY;
     public Vector3 targetPos;
@@ -19,6 +20,7 @@ public class NPCStartDialogue : MonoBehaviour
     {
         if (allowDialogue)
         {
+            dialogue.GetComponent<Dialogue>().dialogues = dialogues;
             tips.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(deltaX, deltaY));
             if (!dialogueTips.show)
                 dialogueTips.show = true;

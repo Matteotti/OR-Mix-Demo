@@ -10,6 +10,7 @@ public class PlayerGroundCheck : MonoBehaviour
     [SerializeField]private float coyoteJumpTimeCounter;
     void Update()
     {
+        //Debug.DrawRay(transform.position + new Vector3(deltaX * -transform.localScale.x, deltaY), Vector2.down * checkDistance);
         if (Physics2D.Raycast(transform.position + new Vector3(deltaX * -transform.localScale.x, deltaY), Vector2.down, checkDistance, 1 << 6))
         {
             if (!playerControl.isGrounded)

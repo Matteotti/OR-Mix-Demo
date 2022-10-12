@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3421385055578485954}
   - component: {fileID: 7531003142296654371}
   - component: {fileID: -8769727591499097270}
-  m_Layer: 0
+  - component: {fileID: 325097049585378839}
+  m_Layer: 9
   m_Name: EnemyBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,3 +137,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
+--- !u!114 &325097049585378839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3421385055578485957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bc8e5b7051fb24aaef0b0ed3cd25f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  existTime: 2.5
