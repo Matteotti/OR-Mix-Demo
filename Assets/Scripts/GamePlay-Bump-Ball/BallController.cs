@@ -11,23 +11,23 @@ public class BallController : MonoBehaviour
     }
 
     public Rigidbody2D rb;
-    private float thrust = 3.0f;
+    private float thrust = 80.0f;
 
     void Update()
     {
     }
 
-    void AddForceUp()
+    public void AddForceUp()
     {
         rb.AddForce(transform.up * thrust);
     }
 
-    void AddForceRight()
+    public void AddForceRight()
     {
         rb.AddForce((transform.up + transform.right) / 2.0f * thrust);
     }
 
-    void AddForceLeft()
+    public void AddForceLeft()
     {
         rb.AddForce((transform.up - transform.right) / 2.0f * thrust);
     }

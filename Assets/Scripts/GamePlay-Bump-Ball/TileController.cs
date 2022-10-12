@@ -5,14 +5,13 @@ using UnityEngine;
 public class TileController : MonoBehaviour
 {
     SpriteRenderer m_SpriteRenderer;
-    Color green;
+    public Sprite good;
+    public Sprite bad;
     GameManager gameMgr;
 
     void Start()
     {
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        //green = new Color(155.0f, 202.0f, 178.0f);
-        green = m_SpriteRenderer.color;
         gameMgr = GameObject.Find("GameMgr").GetComponent<GameManager>();
     }
 
@@ -25,17 +24,17 @@ public class TileController : MonoBehaviour
     {
         if (e.tag == "Ball")
         {
-            if(m_SpriteRenderer.color != green)
+            if(m_SpriteRenderer.sprite != good)
             {
-                m_SpriteRenderer.color = green;
+                m_SpriteRenderer.sprite = good;
                 gameMgr.tile_count++;
             }
         }
         else if(e.tag == "Enemy")
         {
-            if (m_SpriteRenderer.color != Color.black)
+            if (m_SpriteRenderer.sprite != bad)
             {
-                m_SpriteRenderer.color = Color.black;
+                m_SpriteRenderer.sprite = bad;
                 gameMgr.tile_count--;
             }
         }
