@@ -19,26 +19,9 @@ public class PlayerControlForBall : MonoBehaviour
     }
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        if (horizontal * transform.localScale.x < 0)
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        rb.velocity = new Vector2(walkSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        Move();
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            foreach (var ball in balls)
-            {
-                Transform t = ball.GetComponent<Transform>();
-                float d = get_distance2(t.position, transform.position);
-                
-                if (d < 3.0f)
-                {
-                    if (Input.GetKey(KeyCode.W)) ball.GetComponent<BallController>().AddForceUp();
-                    else if (Input.GetKey(KeyCode.A)) ball.GetComponent<BallController>().AddForceLeft();
-                    else if (Input.GetKey(KeyCode.D)) ball.GetComponent<BallController>().AddForceRight();
-                }
-            }
-        }
+        Blow();
 
         UpdateAnim();
     }
@@ -47,6 +30,36 @@ public class PlayerControlForBall : MonoBehaviour
     {
         float d = (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
         return d;
+    }
+
+    void Move()
+    {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        if (horizontal * transform.localScale.x < 0)
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        rb.velocity = new Vector2(walkSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+
+        if (transform.position.x < -3.0) transform.position = new Vector3(-3.0f, transform.position.y, transform.position.z);
+        if (transform.position.x > 3.5) transform.position = new Vector3(3.5f, transform.position.y, transform.position.z);
+    }
+
+    void Blow()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            foreach (var ball in balls)
+            {
+                Transform t = ball.GetComponent<Transform>();
+                float d = get_distance2(t.position, transform.position);
+
+                if (d < 5.0f)
+                {
+                    if (Input.GetKey(KeyCode.W)) ball.GetComponent<BallController>().AddForceUp();
+                    else if (Input.GetKey(KeyCode.A)) ball.GetComponent<BallController>().AddForceLeft();
+                    else if (Input.GetKey(KeyCode.D)) ball.GetComponent<BallController>().AddForceRight();
+                }
+            }
+        }
     }
 
     void UpdateAnim()
