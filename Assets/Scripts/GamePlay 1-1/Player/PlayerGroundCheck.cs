@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerGroundCheck : MonoBehaviour
 {
-    public float deltaX, deltaY, checkDistance;
+    public float deltaX, deltaX2, deltaY, checkDistance;
     public float maxCoyoteJumpTime;
     public PlayerControl playerControl;
     [SerializeField]private float coyoteJumpTimeCounter;
     void Update()
     {
-        //Debug.DrawRay(transform.position + new Vector3(deltaX * -transform.localScale.x, deltaY), Vector2.down * checkDistance);
-        if (Physics2D.Raycast(transform.position + new Vector3(deltaX * -transform.localScale.x, deltaY), Vector2.down, checkDistance, 1 << 6))
+        Debug.DrawRay(transform.position + new Vector3(deltaX * -transform.localScale.x, deltaY), Vector2.down * checkDistance);
+        Debug.DrawRay(transform.position + new Vector3(deltaX2 * -transform.localScale.x, deltaY), Vector2.down * checkDistance);
+        if (Physics2D.Raycast(transform.position + new Vector3(deltaX * -transform.localScale.x, deltaY), Vector2.down, checkDistance, 1 << 6) || Physics2D.Raycast(transform.position + new Vector3(deltaX2 * -transform.localScale.x, deltaY), Vector2.down, checkDistance, 1 << 6))
         {
             if (!playerControl.isGrounded)
                 playerControl.isGrounded = true;
