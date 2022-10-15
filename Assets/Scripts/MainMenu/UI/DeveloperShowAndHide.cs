@@ -5,8 +5,7 @@ using UnityEngine;
 public class DeveloperShowAndHide : MonoBehaviour
 {
     public bool show;
-    public float down, up, acceleration, initSpeed;
-    [SerializeField] private float speed;
+    public float down, up, acceleration, initSpeed, speed;
     public GameObject panel;
     void Update()
     {

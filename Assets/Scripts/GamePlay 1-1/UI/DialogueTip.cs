@@ -7,14 +7,10 @@ using TMPro;
 public class DialogueTip : MonoBehaviour
 {
     public bool show;
-    public float transparentSpeed, deltaX, deltaY;
+    public float transparentSpeed;
     public Image sprite1;
     public TMP_Text sprite2;
     public GameObject NPC;
-    void Start()
-    {
-        transform.position = Camera.main.WorldToScreenPoint(NPC.transform.position + new Vector3(deltaX, deltaY));
-    }
     void Update()
     {
         if (show && sprite1.color.a < 0.99)
