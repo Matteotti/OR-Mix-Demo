@@ -7,8 +7,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu, sceneTransition;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Time.timeScale == 1 && Input.GetKeyDown(KeyCode.Escape) && GetComponent<DeveloperShowAndHide>().speed == 0)
             Pause();
+        else if(Time.timeScale == 0 && Input.GetKeyDown(KeyCode.Escape) && GetComponent<DeveloperShowAndHide>().speed == 0)
+            Continue();
     }
     public void Pause()
     {

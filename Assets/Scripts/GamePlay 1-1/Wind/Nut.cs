@@ -4,20 +4,9 @@ using UnityEngine;
 
 public class Nut : MonoBehaviour
 {
-    private void Start()
+    public float pushForce;
+    public void BeWinded(Vector2 dir)
     {
-        
-    }
-    private void Update()
-    {
-        
-    }
-    public void BeWinded()
-    {
-        Debug.Log("WINDED");
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject);
+        GetComponent<Rigidbody2D>().AddForce(dir.normalized * pushForce, ForceMode2D.Impulse);
     }
 }

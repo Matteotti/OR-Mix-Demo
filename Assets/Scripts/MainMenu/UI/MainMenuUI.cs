@@ -8,6 +8,7 @@ public class MainMenuUI : MonoBehaviour
     public Vector3 initPlayerPos, initCameraPos;
     public Button buttonNew, buttonLoad, buttonDevelopers, buttonQuit;
     public GameObject developersInfoPanel, sceneTransition;
+    public AudioPlayerManager playerManager;
     private void Start()
     {
         if(!PlayerPrefs.HasKey("IfFirstTime"))
