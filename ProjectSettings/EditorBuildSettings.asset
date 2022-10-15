@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gameplay 1-1.unity
     guid: a07252cecd4b22d4c82d0bb2cfaabfac
+  - enabled: 1
+    path: Assets/Scenes/Gameplay-bump-ball.unity
+    guid: 7973105c9aa03344b901bc5fcc18d85e
   m_configObjects: {}
