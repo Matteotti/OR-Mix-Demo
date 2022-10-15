@@ -13,7 +13,6 @@ public class CreateShade : MonoBehaviour
             audioManager.Wind();
             Invoke(nameof(StopPlayingAudio), 1);
             nutList[0].transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-            nutList[0].transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 13, 0);
             nutList[0].AddComponent<Rigidbody2D>();
             nutList[0].GetComponent<Rigidbody2D>().gravityScale = 1;
             nutList[0].GetComponent<BoxCollider2D>().isTrigger = false;

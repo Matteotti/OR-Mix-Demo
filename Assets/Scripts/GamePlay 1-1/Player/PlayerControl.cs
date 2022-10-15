@@ -112,12 +112,12 @@ public class PlayerControl : MonoBehaviour
             return;
         }
         float angle = Mathf.Atan2(dir.y, dir.x);
-        if (nowTip == null)
-            nowTip = Instantiate(lineTip, transform.position + 1.5f * (Vector3)dir, Quaternion.Euler(0, 0, angle / Mathf.PI * 180));
-        else
-        {
-            nowTip.transform.SetPositionAndRotation(transform.position + 1.5f * (Vector3)dir, Quaternion.Euler(0, 0, angle / Mathf.PI * 180));
-        }
+        //if (nowTip == null)
+        //    nowTip = Instantiate(lineTip, transform.position + 1.5f * (Vector3)dir, Quaternion.Euler(0, 0, angle / Mathf.PI * 180));
+        //else
+        //{
+        //    nowTip.transform.SetPositionAndRotation(transform.position + 1.5f * (Vector3)dir, Quaternion.Euler(0, 0, angle / Mathf.PI * 180));
+        //}
         if (Input.GetKeyDown(KeyCode.K))
         {
             audioManager.Wind();

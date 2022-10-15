@@ -1117,12 +1117,12 @@ SpriteRenderer:
   m_SortingLayerID: 101408671
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d44e95f999058449a41ba0454500005, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.0625, y: 2}
+  m_Size: {x: 1.6, y: 2.82}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1136,7 +1136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200028614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.03, y: -4.16, z: 0}
+  m_LocalPosition: {x: -16.74, y: -4.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1156,12 +1156,12 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024442196, y: -0.4029999}
+  m_Offset: {x: 0.01, y: -0.04}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.0625, y: 2}
-    newSize: {x: 2.0625, y: 2}
+    oldSize: {x: 0.8, y: 1.41}
+    newSize: {x: 1.6, y: 2.82}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -6294,8 +6294,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143856392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.76, y: -3.62, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.57, y: -4.31, z: 0}
+  m_LocalScale: {x: 0.5208103, y: 0.5208103, z: 0.5208103}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1906765504}
@@ -6366,7 +6366,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.67586136, y: 0.04835701}
+  m_Offset: {x: 0.16330683, y: 0.04835701}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6377,7 +6377,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2152977, y: 3.1815815}
+  m_Size: {x: 4.240407, y: 3.1815815}
   m_EdgeRadius: 0
 --- !u!114 &1143856396
 MonoBehaviour:
@@ -6406,7 +6406,7 @@ MonoBehaviour:
   willRunOtherThingsWhenFinish: 0
   deltaX: 0
   deltaY: 2
-  targetPos: {x: -4.26, y: -4.02, z: 0}
+  targetPos: {x: -5.23, y: -4.5, z: 0}
   dialogueTips: {fileID: 1984985341}
   dialogue: {fileID: 334338021}
   player: {fileID: 200028614}
